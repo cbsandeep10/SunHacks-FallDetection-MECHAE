@@ -1,12 +1,13 @@
 import cv2
 import threading
-import json
+import json, os
 from time import time
 from google.cloud import storage
 from datetime import datetime
 from twilio.rest import Client
 from google.cloud import automl_v1beta1 as automl
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/sandeepbalaji/imagerec-f4937063c0eb.json"
 bucket_name = 'fall-bucket'
 project_id = 'imagerec-222202'
 compute_region = 'us-central1'
@@ -67,9 +68,9 @@ class VideoCamera(object):
             client = Client(account_sid, auth_token)
             message = client.messages \
                            .create(
-                                body="Take care of your dear ones!!",
+                                body="EMERGENCY ALERT! We have detected that your contact has suffered a fall at "+str(datetime.now()),
                                 from_='+14092456334',
-                                to='+14805775641'
+                                to='+14803346945'
                             )
             print(message.sid)
 
